@@ -4,7 +4,7 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEngine.Timeline;
 
-public class TurtleAgent : Agent 
+public class TurtleAgent2 : Agent 
 {
     [SerializeField] private Transform _goal;
     [SerializeField] private Transform _wall;
@@ -40,19 +40,6 @@ public class TurtleAgent : Agent
         transform.localPosition = new Vector3(Random.Range(-4.5f, -0.7f), 0.15f, Random.Range(-4.5f, 4.5f));
         
         _goal.localPosition = new Vector3(Random.Range(0.7f, 4.5f), 0.3f, Random.Range(-4.5f, 4.5f));
-        
-        // // Randomize the direction on the Y-axis (0-360 degrees)
-        // float randomAngle = Random.Range(0f, 360f);
-        // Vector3 randomDirection = Quaternion.Euler(0f, randomAngle, 0f) * Vector3.forward;
-        //
-        // // Randomize the distance (1-2.5 units)
-        // float randomDistance = Random.Range(1f, 2.5f);
-        //
-        // //Calculate the goal's position
-        // Vector3 goalPosition = transform.localPosition + randomDirection * randomDistance;
-        //
-        // //Apply the calculated position to the goal
-        // _goal.localPosition = new Vector3(goalPosition.x, 0.3f, goalPosition.z);
     }
 
     public override void CollectObservations(VectorSensor sensor)
