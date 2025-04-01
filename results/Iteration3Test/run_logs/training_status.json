@@ -2,58 +2,58 @@
     "Turtle": {
         "checkpoints": [
             {
-                "steps": 17999980,
-                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-17999980.onnx",
-                "reward": 0.8149788065868265,
-                "creation_time": 1743472783.7873042,
+                "steps": 19999938,
+                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-19999938.onnx",
+                "reward": 0.59160586972447,
+                "creation_time": 1743473798.578485,
                 "auxillary_file_paths": [
-                    "results\\Iteration3Test\\Turtle\\Turtle-17999980.pt"
+                    "results\\Iteration3Test\\Turtle\\Turtle-19999938.pt"
                 ]
             },
             {
-                "steps": 18499945,
-                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-18499945.onnx",
-                "reward": 0.8182285497231143,
-                "creation_time": 1743472990.7105308,
+                "steps": 20499994,
+                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-20499994.onnx",
+                "reward": 0.7544808668248794,
+                "creation_time": 1743473995.290691,
                 "auxillary_file_paths": [
-                    "results\\Iteration3Test\\Turtle\\Turtle-18499945.pt"
+                    "results\\Iteration3Test\\Turtle\\Turtle-20499994.pt"
                 ]
             },
             {
-                "steps": 18999985,
-                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-18999985.onnx",
-                "reward": 0.8075468347414391,
-                "creation_time": 1743473196.9095988,
+                "steps": 20999987,
+                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-20999987.onnx",
+                "reward": 0.751948366722753,
+                "creation_time": 1743474236.6468923,
                 "auxillary_file_paths": [
-                    "results\\Iteration3Test\\Turtle\\Turtle-18999985.pt"
+                    "results\\Iteration3Test\\Turtle\\Turtle-20999987.pt"
                 ]
             },
             {
-                "steps": 19499971,
-                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-19499971.onnx",
-                "reward": 0.8152257902647859,
-                "creation_time": 1743473404.5668921,
+                "steps": 21499996,
+                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-21499996.onnx",
+                "reward": 0.8665999930940176,
+                "creation_time": 1743474480.8165045,
                 "auxillary_file_paths": [
-                    "results\\Iteration3Test\\Turtle\\Turtle-19499971.pt"
+                    "results\\Iteration3Test\\Turtle\\Turtle-21499996.pt"
                 ]
             },
             {
-                "steps": 19566623,
-                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-19566623.onnx",
-                "reward": 0.850599984327952,
-                "creation_time": 1743473494.8265653,
+                "steps": 21546915,
+                "file_path": "results\\Iteration3Test\\Turtle\\Turtle-21546915.onnx",
+                "reward": 0.8096061959978222,
+                "creation_time": 1743474562.9531794,
                 "auxillary_file_paths": [
-                    "results\\Iteration3Test\\Turtle\\Turtle-19566623.pt"
+                    "results\\Iteration3Test\\Turtle\\Turtle-21546915.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 19566623,
+            "steps": 21546915,
             "file_path": "results\\Iteration3Test\\Turtle.onnx",
-            "reward": 0.850599984327952,
-            "creation_time": 1743473494.8265653,
+            "reward": 0.8096061959978222,
+            "creation_time": 1743474562.9531794,
             "auxillary_file_paths": [
-                "results\\Iteration3Test\\Turtle\\Turtle-19566623.pt"
+                "results\\Iteration3Test\\Turtle\\Turtle-21546915.pt"
             ]
         }
     },
