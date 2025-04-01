@@ -75,7 +75,7 @@ public class TurtleAgent3 : Agent
         MoveAgent(actions.DiscreteActions);
         
         //Penalty given each step to encourage the agent to reach the goal faster
-        AddReward(-3f / MaxStep);
+        AddReward(-2f / MaxStep);
         
         //Update the cumulative reward after adding the step penalty
         _cumulativeReward = GetCumulativeReward();
@@ -134,6 +134,12 @@ public class TurtleAgent3 : Agent
         AddReward(1f); //Reward the agent for reaching the goal
         _cumulativeReward = GetCumulativeReward();
 
+        //Change the color of Turtle to green
+        if (floorMeshRenderer != null)
+        {
+            floorMeshRenderer.material.color = Color.green;
+        }
+        
         EndEpisode();
     }
 
@@ -142,7 +148,8 @@ public class TurtleAgent3 : Agent
         if (collision.gameObject.CompareTag("Wall"))
         {
             //Apply a small penalty for colliding with a wall
-            AddReward(-0.05f);
+            AddReward(-1f);
+            EndEpisode();
             
             //Change the color of Turtle to red
             if (floorMeshRenderer != null)
@@ -152,24 +159,24 @@ public class TurtleAgent3 : Agent
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            //Continuously apply a small penalty while in contact with a wall
-            AddReward(-0.01f * Time.fixedDeltaTime);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            //Change the color of the Turtle back to blue
-            if (floorMeshRenderer != null)
-            {
-                floorMeshRenderer.material.color = Color.gray;
-            }
-        }
-    }
+    // private void OnCollisionStay(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Wall"))
+    //     {
+    //         //Continuously apply a small penalty while in contact with a wall
+    //         AddReward(-0.01f * Time.fixedDeltaTime);
+    //     }
+    // }
+    //
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Wall"))
+    //     {
+    //         //Change the color of the Turtle back to blue
+    //         if (floorMeshRenderer != null)
+    //         {
+    //             floorMeshRenderer.material.color = Color.gray;
+    //         }
+    //     }
+    // }
 }
