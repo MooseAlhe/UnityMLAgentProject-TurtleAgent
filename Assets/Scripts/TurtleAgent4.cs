@@ -29,6 +29,24 @@ public class TurtleAgent4 : Agent
     {
         Debug.Log("OnEpisodeBegin()");
         
+        // Check the cumulative reward from the previous episode
+        if (_cumulativeReward > 0)
+        {
+            // Change the floor color to green if the agent succeeded
+            if (floorMeshRenderer != null)
+            {
+                floorMeshRenderer.material.color = Color.green;
+            }
+        }
+        else
+        {
+            // Change the floor color to red if the agent failed
+            if (floorMeshRenderer != null)
+            {
+                floorMeshRenderer.material.color = Color.red;
+            }
+        }
+        
         _currentEpisode++;
         _cumulativeReward = 0f;
         
@@ -135,12 +153,12 @@ public class TurtleAgent4 : Agent
         AddReward(1f); //Reward the agent for reaching the goal
         _cumulativeReward = GetCumulativeReward();
 
-        //Change the color of Turtle to green
-        if (floorMeshRenderer != null)
-        {
-            floorMeshRenderer.material.color = Color.green;
-        }
-        
+        // //Change the color of Turtle to green
+        // if (floorMeshRenderer != null)
+        // {
+        //     floorMeshRenderer.material.color = Color.green;
+        // }
+        //
         EndEpisode();
     }
 
@@ -160,10 +178,10 @@ public class TurtleAgent4 : Agent
         {
             AddReward(-1f);
             EndEpisode();
-            if (floorMeshRenderer != null)
-            {
-                floorMeshRenderer.material.color = Color.red;
-            }
+            // if (floorMeshRenderer != null)
+            // {
+            //     floorMeshRenderer.material.color = Color.red;
+            // }
         }
     }
 

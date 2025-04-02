@@ -1,0 +1,65 @@
+{
+    "Turtle": {
+        "checkpoints": [
+            {
+                "steps": 100999992,
+                "file_path": "results\\Iteration4Test\\Turtle\\Turtle-100999992.onnx",
+                "reward": -0.5804000422358513,
+                "creation_time": 1743560529.8958628,
+                "auxillary_file_paths": [
+                    "results\\Iteration4Test\\Turtle\\Turtle-100999992.pt"
+                ]
+            },
+            {
+                "steps": 101499990,
+                "file_path": "results\\Iteration4Test\\Turtle\\Turtle-101499990.onnx",
+                "reward": -1.9990667551755905,
+                "creation_time": 1743560728.3843021,
+                "auxillary_file_paths": [
+                    "results\\Iteration4Test\\Turtle\\Turtle-101499990.pt"
+                ]
+            },
+            {
+                "steps": 101999955,
+                "file_path": "results\\Iteration4Test\\Turtle\\Turtle-101999955.onnx",
+                "reward": -1.9993600890040397,
+                "creation_time": 1743560926.6657157,
+                "auxillary_file_paths": [
+                    "results\\Iteration4Test\\Turtle\\Turtle-101999955.pt"
+                ]
+            },
+            {
+                "steps": 102499970,
+                "file_path": "results\\Iteration4Test\\Turtle\\Turtle-102499970.onnx",
+                "reward": -2.030425083823502,
+                "creation_time": 1743561124.2886727,
+                "auxillary_file_paths": [
+                    "results\\Iteration4Test\\Turtle\\Turtle-102499970.pt"
+                ]
+            },
+            {
+                "steps": 102591620,
+                "file_path": "results\\Iteration4Test\\Turtle\\Turtle-102591620.onnx",
+                "reward": -1.9992667535940807,
+                "creation_time": 1743561165.5751283,
+                "auxillary_file_paths": [
+                    "results\\Iteration4Test\\Turtle\\Turtle-102591620.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 102591620,
+            "file_path": "results\\Iteration4Test\\Turtle.onnx",
+            "reward": -1.9992667535940807,
+            "creation_time": 1743561165.5751283,
+            "auxillary_file_paths": [
+                "results\\Iteration4Test\\Turtle\\Turtle-102591620.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
