@@ -99,9 +99,9 @@ GameObject:
   - component: {fileID: 2969895324429824223}
   - component: {fileID: 830335810014932682}
   - component: {fileID: 584925388422411806}
-  - component: {fileID: 2533168059726854411}
+  - component: {fileID: 1964366038046348460}
   - component: {fileID: 2800551971981208429}
-  - component: {fileID: 2974399185433479453}
+  - component: {fileID: 4046108012630739561}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Untagged
@@ -229,7 +229,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &2533168059726854411
+--- !u!114 &1964366038046348460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 865414235346312823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965e796da7c35644ab762a89cef83e19, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b9b7bf2c623cb41a312248ec72b37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -272,7 +272,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: c57119a3bb5f32f4ab80af8f49a1a5f7, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Turtle
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
---- !u!114 &2974399185433479453
+--- !u!114 &4046108012630739561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,7 +329,6 @@ Transform:
   - {fileID: 5543194854095449569}
   - {fileID: 3915233881871080909}
   - {fileID: 3671719640637297494}
-  - {fileID: 2793941836010579332}
   m_Father: {fileID: 5580657783915524597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2167038410031087829
@@ -968,7 +967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5580657783915524597}
   m_Layer: 0
-  m_Name: Environment 3
+  m_Name: Environment 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -989,6 +988,7 @@ Transform:
   m_Children:
   - {fileID: 2554592328413836210}
   - {fileID: 4858374059666556214}
+  - {fileID: 2793941836010579332}
   - {fileID: 6590995953629308974}
   - {fileID: 1219832300559211729}
   m_Father: {fileID: 0}
@@ -1004,10 +1004,11 @@ GameObject:
   - component: {fileID: 2793941836010579332}
   - component: {fileID: 2293037347520246382}
   - component: {fileID: 2157167208040052057}
+  - component: {fileID: 8015602861013215256}
   - component: {fileID: 1083947536757571975}
   m_Layer: 0
-  m_Name: Wall (4)
-  m_TagString: Wall
+  m_Name: Middle Wall
+  m_TagString: Middle Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1021,11 +1022,11 @@ Transform:
   m_GameObject: {fileID: 8308508188651103062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.25, z: -2.48}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4858374059666556214}
+  m_Father: {fileID: 5580657783915524597}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &2293037347520246382
 MeshFilter:
@@ -1080,6 +1081,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8015602861013215256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308508188651103062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441e5f421b4e9c47b8901073e764fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
 --- !u!65 &1083947536757571975
 BoxCollider:
   m_ObjectHideFlags: 0
