@@ -2,58 +2,58 @@
     "Turtle": {
         "checkpoints": [
             {
-                "steps": 1999991,
-                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-1999991.onnx",
-                "reward": -4.567713505512959,
-                "creation_time": 1743742294.501197,
+                "steps": 65499993,
+                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-65499993.onnx",
+                "reward": 9.512866640256512,
+                "creation_time": 1743769175.5699875,
                 "auxillary_file_paths": [
-                    "results\\Iteration4RayTest\\Turtle\\Turtle-1999991.pt"
+                    "results\\Iteration4RayTest\\Turtle\\Turtle-65499993.pt"
                 ]
             },
             {
-                "steps": 2203198,
-                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-2203198.onnx",
-                "reward": -1.848789481348113,
-                "creation_time": 1743742439.8413074,
+                "steps": 65999965,
+                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-65999965.onnx",
+                "reward": 9.55872824956786,
+                "creation_time": 1743769379.8214242,
                 "auxillary_file_paths": [
-                    "results\\Iteration4RayTest\\Turtle\\Turtle-2203198.pt"
+                    "results\\Iteration4RayTest\\Turtle\\Turtle-65999965.pt"
                 ]
             },
             {
-                "steps": 2440335,
-                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-2440335.onnx",
-                "reward": 9.782399892807007,
-                "creation_time": 1743742890.406942,
+                "steps": 66499974,
+                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-66499974.onnx",
+                "reward": 9.205226602902014,
+                "creation_time": 1743769585.145141,
                 "auxillary_file_paths": [
-                    "results\\Iteration4RayTest\\Turtle\\Turtle-2440335.pt"
+                    "results\\Iteration4RayTest\\Turtle\\Turtle-66499974.pt"
                 ]
             },
             {
-                "steps": 2499954,
-                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-2499954.onnx",
-                "reward": 0.8509285697979586,
-                "creation_time": 1743743086.7398431,
+                "steps": 66999972,
+                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-66999972.onnx",
+                "reward": 8.795384519375288,
+                "creation_time": 1743769790.5873146,
                 "auxillary_file_paths": [
-                    "results\\Iteration4RayTest\\Turtle\\Turtle-2499954.pt"
+                    "results\\Iteration4RayTest\\Turtle\\Turtle-66999972.pt"
                 ]
             },
             {
-                "steps": 2627954,
-                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-2627954.onnx",
-                "reward": 1.647476872190451,
-                "creation_time": 1743743168.6824763,
+                "steps": 67184186,
+                "file_path": "results\\Iteration4RayTest\\Turtle\\Turtle-67184186.onnx",
+                "reward": 10.089999914169312,
+                "creation_time": 1743769871.338961,
                 "auxillary_file_paths": [
-                    "results\\Iteration4RayTest\\Turtle\\Turtle-2627954.pt"
+                    "results\\Iteration4RayTest\\Turtle\\Turtle-67184186.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2627954,
+            "steps": 67184186,
             "file_path": "results\\Iteration4RayTest\\Turtle.onnx",
-            "reward": 1.647476872190451,
-            "creation_time": 1743743168.6824763,
+            "reward": 10.089999914169312,
+            "creation_time": 1743769871.338961,
             "auxillary_file_paths": [
-                "results\\Iteration4RayTest\\Turtle\\Turtle-2627954.pt"
+                "results\\Iteration4RayTest\\Turtle\\Turtle-67184186.pt"
             ]
         }
     },
