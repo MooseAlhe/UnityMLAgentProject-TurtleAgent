@@ -16,6 +16,16 @@ public class TurtleAgent4 : Agent
     
     private int _currentEpisode = 0;
     private float _cumulativeReward = 0f;
+
+    private bool _hasPassedWall;
+    private bool _hasTouchedGoal;
+    
+    private Color _previousColor;
+    
+    private Vector3 _lastPosition;
+    private float _turtleSpeed;
+    private Vector3 _lastWallPosition;
+    private float _wallSpeed;
     
     public override void Initialize()
     {
@@ -23,14 +33,22 @@ public class TurtleAgent4 : Agent
         
         _currentEpisode = 0;
         _cumulativeReward = 0f;
+        _hasTouchedGoal = false;
     }
 
     public override void OnEpisodeBegin()
     {
         Debug.Log("OnEpisodeBegin()");
+
+        _lastPosition = transform.localPosition;
+        _turtleSpeed = 0f;
+        _lastWallPosition = _wall.localPosition;
+        _wallSpeed = 0f;
+        
+        _hasPassedWall = false;
         
         // Check the cumulative reward from the previous episode
-        if (_cumulativeReward > 0)
+        if (_hasTouchedGoal)
         {
             // Change the floor color to green if the agent succeeded
             if (floorMeshRenderer != null)
@@ -47,6 +65,8 @@ public class TurtleAgent4 : Agent
             }
         }
         
+        _hasTouchedGoal = false;
+        
         _currentEpisode++;
         _cumulativeReward = 0f;
         
@@ -59,8 +79,6 @@ public class TurtleAgent4 : Agent
         transform.localPosition = new Vector3(Random.Range(-4.5f, -0.7f), 0.15f, Random.Range(-4.5f, 4.5f));
         
         _goal.localPosition = new Vector3(Random.Range(0.7f, 4.5f), 0.3f, Random.Range(-4.5f, 4.5f));
-        
-        //_wall.localPosition = new Vector3(0f, 0.25f, Random.Range(-2.5f, 2.5f));
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -79,6 +97,11 @@ public class TurtleAgent4 : Agent
         float wallPosX_normalized = _wall.localPosition.x / 5f;
         float wallPosZ_normalized = _wall.localPosition.z / 5f;
         
+        // The Turtle's speed
+        float turtleSpeed_normalized = Mathf.Clamp01(_turtleSpeed / 5f);
+        // The Wall's speed
+        float wallSpeed_normalized = Mathf.Clamp01(_wallSpeed / 5f);
+        
         sensor.AddObservation(goalPosX_normalized);
         sensor.AddObservation(goalPosZ_normalized);
         sensor.AddObservation(turtlePosX_normalized);
@@ -86,15 +109,38 @@ public class TurtleAgent4 : Agent
         sensor.AddObservation(turtleRotation_normalized);
         sensor.AddObservation(wallPosX_normalized);
         sensor.AddObservation(wallPosZ_normalized);
+        sensor.AddObservation(turtleSpeed_normalized);
+        sensor.AddObservation(wallSpeed_normalized);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        _turtleSpeed = Vector3.Distance(transform.localPosition, _lastPosition) / Time.deltaTime;
+        _lastPosition = transform.localPosition;
+        _wallSpeed = Vector3.Distance(_wall.localPosition, _lastWallPosition) / Time.deltaTime;
+        _lastWallPosition = _wall.localPosition;
+        
+        // Get the continuous actions
+        float moveForward = actions.ContinuousActions[0];
+        float rotate = actions.ContinuousActions[1];
+        
         //Move the agent using the action
-        MoveAgent(actions.DiscreteActions);
+        MoveAgent(moveForward, rotate);
         
         //Penalty given each step to encourage the agent to reach the goal faster
-        AddReward(-2f / MaxStep);
+        AddReward(-4f / MaxStep);
+        
+        // Reward for passing the middle wall
+        if (!_hasPassedWall && transform.localPosition.x > 1f)
+        {
+            AddReward(0.5f);  // Tune this value
+            _hasPassedWall = true;
+        }
+        
+        if (_turtleSpeed < 0.2f)  // Threshold: tune based on your movement scale
+        {
+            AddReward(-0.05f);  // Light penalty for being too slow
+        }
         
         //Update the cumulative reward after adding the step penalty
         _cumulativeReward = GetCumulativeReward();
@@ -102,42 +148,18 @@ public class TurtleAgent4 : Agent
     
     public override void Heuristic(in ActionBuffers actionsOut) 
     {
-        var discreteActions = actionsOut.DiscreteActions;
-    
-        if (Input.GetKey(KeyCode.UpArrow)) // Move forward
-        {
-            discreteActions[0] = 1;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow)) // Rotate left
-        {
-            discreteActions[0] = 2;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow)) // Rotate right
-        {
-            discreteActions[0] = 3;
-        }
-        else
-        {
-            discreteActions[0] = 0; // No movement
-        }
+        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+        continuousActions[0] = Input.GetAxisRaw("Vertical");
+        continuousActions[1] = Input.GetAxisRaw("Horizontal");
     }
 
-    public void MoveAgent(ActionSegment<int> act)
+    public void MoveAgent(float moveForward, float rotate)
     {
-        var action = act[0];
+        // Move forward
+        transform.localPosition += transform.forward * moveForward * _moveSpeed * Time.deltaTime;
 
-        switch (action)
-        {
-            case 1: //Move forward
-                transform.localPosition += transform.forward * _moveSpeed * Time.deltaTime;
-                break;
-            case 2: //Rotate left
-                transform.Rotate(0f, -_rotationSpeed * Time.deltaTime, 0f);
-                break;
-            case 3: //Rotate right
-                transform.Rotate(0f, _rotationSpeed * Time.deltaTime, 0f);
-                break;
-        }
+        // Rotate
+        transform.Rotate(0f, rotate * _rotationSpeed * Time.deltaTime, 0f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -150,15 +172,10 @@ public class TurtleAgent4 : Agent
 
     private void GoalReached()
     {
-        AddReward(1f); //Reward the agent for reaching the goal
+        AddReward(10f); //Reward the agent for reaching the goal
         _cumulativeReward = GetCumulativeReward();
-
-        // //Change the color of Turtle to green
-        // if (floorMeshRenderer != null)
-        // {
-        //     floorMeshRenderer.material.color = Color.green;
-        // }
-        //
+        _hasTouchedGoal = true;
+        
         EndEpisode();
     }
 
@@ -167,42 +184,40 @@ public class TurtleAgent4 : Agent
         if (collision.gameObject.CompareTag("Wall"))
         {
             //Apply a small penalty for colliding with a wall
-            AddReward(-0.05f);
-            //Change the color of Turtle to red
-            if (floorMeshRenderer != null)
-            {
-                floorMeshRenderer.material.color = Color.yellow;
-            }
+            AddReward(-5f);
+            // //Change the color of Turtle to red
+            // if (floorMeshRenderer != null)
+            // {
+            //     _previousColor = floorMeshRenderer.material.color;
+            //     floorMeshRenderer.material.color = Color.cyan;
+            // }
+            EndEpisode();
         }
         else if (collision.gameObject.CompareTag("Middle Wall"))
         {
-            AddReward(-1f);
+            AddReward(-5f);
             EndEpisode();
-            // if (floorMeshRenderer != null)
-            // {
-            //     floorMeshRenderer.material.color = Color.red;
-            // }
         }
     }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            //Continuously apply a small penalty while in contact with a wall
-            AddReward(-0.01f * Time.fixedDeltaTime);
-        }
-    }
-    
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            //Change the color of the Turtle back to blue
-            if (floorMeshRenderer != null)
-            {
-                floorMeshRenderer.material.color = Color.gray;
-            }
-        }
-    }
+    //
+    // private void OnCollisionStay(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Wall"))
+    //     {
+    //         //Continuously apply a small penalty while in contact with a wall
+    //         AddReward(-0.2f * Time.fixedDeltaTime);
+    //     }
+    // }
+    //
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Wall"))
+    //     {
+    //         //Change the color of the Turtle back to blue
+    //         if (floorMeshRenderer != null)
+    //         {
+    //             floorMeshRenderer.material.color = _previousColor;
+    //         }
+    //     }
+    // }
 }
